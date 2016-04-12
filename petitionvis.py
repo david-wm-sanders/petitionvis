@@ -52,7 +52,7 @@ colors = ["#5DA5DA", "#FAA43A", "#60BD68", "#B276B2", "#DECF3F", "#F15854"]
 sizes = [country["signature_count"] / signum_other * 100 for country
          in sigs_by_country_sans_uk if country["signature_count"] >= 20]
 plt.figure(figsize=(16, 12))
-plt.pie(sizes, labels=labels,  colors=colors, labeldistance=1.12, startangle=90,
+plt.pie(sizes, labels=labels, colors=colors, labeldistance=1.12, startangle=90,
         autopct="%1.1f%%", pctdistance=1.06)
 plt.suptitle("Percentages of signatures from other countries (where signature count >= 20)",
              y=0.98)
