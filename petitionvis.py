@@ -47,7 +47,7 @@ plt.pie(sizes, labels=labels, colors=colors, explode=boom, autopct="%1.1f%%",
         pctdistance=0.8)
 plt.suptitle("{0}, '{1}', {2}\nPercentage of signatures from the UK vs other countries".format(petition_id, action, signum))
 plt.axis("equal")
-plt.savefig("{0}_{1}_sigPercentagesUKvsOther.png".format(petition_id, signum))
+plt.savefig("fig/{0}_{1}_sigPercentagesUKvsOther.png".format(petition_id, signum))
 plt.close()
 
 sigs_by_country_sans_uk = [country for country in sigs_by_country
@@ -63,5 +63,5 @@ plt.pie(sizes, labels=labels, colors=colors, labeldistance=1.12, startangle=90,
         autopct="%1.1f%%", pctdistance=1.06)
 plt.suptitle("{0}, '{1}', {2}\nPercentages of signatures from other countries (where signature count >= 20)".format(petition_id, action, signum))
 plt.axis("equal")
-plt.savefig("{0}_{1}_sigPercentagesOther.png".format(petition_id, signum))
+plt.savefig("fig/{0}_{1}_sigPercentagesOther.png".format(petition_id, signum))
 plt.close()
