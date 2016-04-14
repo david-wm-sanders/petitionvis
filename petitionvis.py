@@ -5,9 +5,13 @@ from operator import methodcaller
 from pathlib import Path
 import matplotlib.pyplot as plt
 
-p = Path("122946.json")
+if len(sys.argv) != 2:
+    print("Usage: petitionvis.py <petition number>")
+    sys.exit(1)
+
+p = Path("{0}.json".format(sys.argv[1]))
 if not p.exists():
-    print("File does not exist!")
+    print("'{0}' does not exist!".format(str(p)))
     sys.exit(1)
 
 petition = None
@@ -40,7 +44,7 @@ plt.pie(sizes, labels=labels, colors=colors, explode=boom, autopct="%1.1f%%",
         pctdistance=0.8)
 plt.suptitle("Percentage of signatures from the UK vs other countries", y=0.98)
 plt.axis("equal")
-plt.savefig("{0}_pie_sigPercentagesUKvsOther.png".format(petition_id))
+plt.savefig("{0}_{1}_sigPercentagesUKvsOther.png".format(petition_id, signum))
 plt.close()
 
 sigs_by_country_sans_uk = [country for country in sigs_by_country
@@ -57,5 +61,5 @@ plt.pie(sizes, labels=labels, colors=colors, labeldistance=1.12, startangle=90,
 plt.suptitle("Percentages of signatures from other countries (where signature count >= 20)",
              y=0.98)
 plt.axis("equal")
-plt.savefig("{0}_sigPercentagesOther.png".format(petition_id))
+plt.savefig("{0}_{1}_sigPercentagesOther.png".format(petition_id, signum))
 plt.close()
