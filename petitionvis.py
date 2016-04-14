@@ -22,7 +22,9 @@ petition_id = petition["id"]
 petition = petition["attributes"]
 # print(*[k for k in petition.keys()], sep=", ")
 
-print("Action:", petition["action"])
+action = petition["action"]
+print("Action:", action)
+
 print("Author:", petition["creator_name"])
 
 signum = petition["signature_count"]
@@ -40,9 +42,10 @@ labels = ["UK", "Other"]
 colors = ["#5DA5DA", "#FAA43A", "#60BD68", "#B276B2", "#DECF3F", "#F15854"]
 boom = (0, 0.5)
 sizes = [signum_uk / signum * 100, (signum - signum_uk) / signum * 100]
+plt.figure(figsize=(16, 12))
 plt.pie(sizes, labels=labels, colors=colors, explode=boom, autopct="%1.1f%%",
         pctdistance=0.8)
-plt.suptitle("Percentage of signatures from the UK vs other countries", y=0.98)
+plt.suptitle("{0}, '{1}', {2}\nPercentage of signatures from the UK vs other countries".format(petition_id, action, signum))
 plt.axis("equal")
 plt.savefig("{0}_{1}_sigPercentagesUKvsOther.png".format(petition_id, signum))
 plt.close()
@@ -58,8 +61,7 @@ sizes = [country["signature_count"] / signum_other * 100 for country
 plt.figure(figsize=(16, 12))
 plt.pie(sizes, labels=labels, colors=colors, labeldistance=1.12, startangle=90,
         autopct="%1.1f%%", pctdistance=1.06)
-plt.suptitle("Percentages of signatures from other countries (where signature count >= 20)",
-             y=0.98)
+plt.suptitle("{0}, '{1}', {2}\nPercentages of signatures from other countries (where signature count >= 20)".format(petition_id, action, signum))
 plt.axis("equal")
 plt.savefig("{0}_{1}_sigPercentagesOther.png".format(petition_id, signum))
 plt.close()
